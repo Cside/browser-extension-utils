@@ -5,6 +5,7 @@ extends:
   - "eslint:recommended"
   - "plugin:@typescript-eslint/eslint-recommended"
   - "plugin:prettier/recommended"
+  - "plugin:jest/recommended"
 parser: "@typescript-eslint/parser"
 plugins:
   - "@typescript-eslint"
@@ -17,3 +18,5 @@ rules:
     - ignoreRestSiblings: true
       argsIgnorePattern: ^_
   prefer-arrow-callback: error
+  jest/valid-title": off
+  jest/no-conditional-expect": off
