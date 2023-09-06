@@ -10,14 +10,6 @@
   },
   "types": "lib/index.d.ts",
   "license": "MIT",
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib/",
-    "module/",
-    "src/"
-  ],
   "scripts": {
     "build": "tsc -p . && tsc -p ./tsconfig.module.json",
     "clean": "rm -rf lib module",
