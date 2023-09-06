@@ -1,30 +1,17 @@
 {
-  "name": "mabiki",
-  "version": "1.0.1",
-  "description": "Provides throttle and debounce",
-  "main": "./lib/mabiki.js",
-  "module": "./module/mabiki.js",
+  "name": "browser-extension-utils",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "module": "./module/index.js",
   "exports": {
-    "require": "./lib/mabiki.js",
-    "import": "./module/mabiki.js",
-    "default": "./lib/mabiki.js"
+    "require": "./lib/index.js",
+    "import": "./module/index.js",
+    "default": "./lib/index.js"
   },
-  "types": "lib/mabiki.d.ts",
-  "repository": "https://github.com/hokaccha/mabiki",
-  "homepage": "https://github.com/hokaccha/mabiki",
-  "bugs": {
-    "url": "https://github.com/hokaccha/mabiki/issues"
-  },
-  "author": "Kazuhito Hokamura",
+  "types": "lib/index.d.ts",
   "license": "MIT",
-  "sideEffects": false,
-  "keywords": [
-    "debounce",
-    "throttle"
-  ],
   "directories": {
-    "lib": "lib",
-    "test": "test"
+    "lib": "lib"
   },
   "files": [
     "lib/",
