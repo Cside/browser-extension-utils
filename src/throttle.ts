@@ -1,6 +1,6 @@
-import type { DebouncedFunc } from "./debounce";
-import { debounce } from "./debounce";
-import { isObject } from "./isObject";
+import type { DebouncedFunc } from './debounce';
+import { debounce } from './debounce';
+import { isObject } from './isObject';
 
 type ThrottleOptions = {
   leading?: boolean;
@@ -58,15 +58,15 @@ export function throttle<T extends (...args: any) => any>(
   wait?: number,
   options?: ThrottleOptions
 ): DebouncedFunc<T> {
-  if (typeof func !== "function") {
-    throw new TypeError("Expected a function");
+  if (typeof func !== 'function') {
+    throw new TypeError('Expected a function');
   }
 
   let leading = true;
   let trailing = true;
   if (isObject(options)) {
-    leading = "leading" in options ? !!options.leading : leading;
-    trailing = "trailing" in options ? !!options.trailing : trailing;
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
 
   return debounce(func, wait, {

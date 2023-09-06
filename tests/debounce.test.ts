@@ -1,11 +1,11 @@
-import { debounce } from "../src/mabiki";
+import { debounce } from '../src/mabiki';
 
 export function identity<T>(value: T): T {
   return value;
 }
 
-describe("debounce", () => {
-  it("should debounce a function", (done) => {
+describe('debounce', () => {
+  it('should debounce a function', (done) => {
     let callCount = 0;
 
     const debounced = debounce((value: any) => {
@@ -13,15 +13,15 @@ describe("debounce", () => {
       return value;
     }, 32);
 
-    const results = [debounced("a"), debounced("b"), debounced("c")];
+    const results = [debounced('a'), debounced('b'), debounced('c')];
     expect(results).toEqual([undefined, undefined, undefined]);
     expect(callCount).toBe(0);
 
     setTimeout(() => {
       expect(callCount).toBe(1);
 
-      const results = [debounced("d"), debounced("e"), debounced("f")];
-      expect(results).toEqual(["c", "c", "c"]);
+      const results = [debounced('d'), debounced('e'), debounced('f')];
+      expect(results).toEqual(['c', 'c', 'c']);
       expect(callCount).toBe(1);
     }, 128);
 
@@ -31,21 +31,21 @@ describe("debounce", () => {
     }, 256);
   });
 
-  it("subsequent debounced calls return the last `func` result", (done) => {
+  it('subsequent debounced calls return the last `func` result', (done) => {
     const debounced = debounce(identity, 32);
-    debounced("a");
+    debounced('a');
 
     setTimeout(() => {
-      expect(debounced("b")).not.toBe("b");
+      expect(debounced('b')).not.toBe('b');
     }, 64);
 
     setTimeout(() => {
-      expect(debounced("c")).not.toBe("c");
+      expect(debounced('c')).not.toBe('c');
       done();
     }, 128);
   });
 
-  it("should not immediately call `func` when `wait` is `0`", (done) => {
+  it('should not immediately call `func` when `wait` is `0`', (done) => {
     let callCount = 0;
     const debounced = debounce(() => {
       ++callCount;
@@ -61,7 +61,7 @@ describe("debounce", () => {
     }, 5);
   });
 
-  it("should apply default options", (done) => {
+  it('should apply default options', (done) => {
     let callCount = 0;
     const debounced = debounce(
       () => {
@@ -80,7 +80,7 @@ describe("debounce", () => {
     }, 64);
   });
 
-  it("should support a `leading` option", (done) => {
+  it('should support a `leading` option', (done) => {
     const callCounts = [0, 0];
 
     const withLeading = debounce(
@@ -116,23 +116,23 @@ describe("debounce", () => {
     }, 64);
   });
 
-  it("subsequent leading debounced calls return the last `func` result", (done) => {
+  it('subsequent leading debounced calls return the last `func` result', (done) => {
     const debounced = debounce(identity, 32, {
         leading: true,
         trailing: false,
       }),
-      results = [debounced("a"), debounced("b")];
+      results = [debounced('a'), debounced('b')];
 
-    expect(results).toEqual(["a", "a"]);
+    expect(results).toEqual(['a', 'a']);
 
     setTimeout(() => {
-      const results = [debounced("c"), debounced("d")];
-      expect(results).toEqual(["c", "c"]);
+      const results = [debounced('c'), debounced('d')];
+      expect(results).toEqual(['c', 'c']);
       done();
     }, 64);
   });
 
-  it("should support a `trailing` option", (done) => {
+  it('should support a `trailing` option', (done) => {
     let withCount = 0;
     let withoutCount = 0;
 
@@ -165,7 +165,7 @@ describe("debounce", () => {
     }, 64);
   });
 
-  it("should support a `maxWait` option", (done) => {
+  it('should support a `maxWait` option', (done) => {
     let callCount = 0;
 
     const debounced = debounce(
@@ -194,7 +194,7 @@ describe("debounce", () => {
     }, 256);
   });
 
-  it("should support `maxWait` in a tight loop", (done) => {
+  it('should support `maxWait` in a tight loop', (done) => {
     const limit = 1000;
     let withCount = 0;
     let withoutCount = 0;
@@ -223,7 +223,7 @@ describe("debounce", () => {
     }, 1);
   });
 
-  it("should queue a trailing call for subsequent debounced calls after `maxWait`", (done) => {
+  it('should queue a trailing call for subsequent debounced calls after `maxWait`', (done) => {
     let callCount = 0;
 
     const debounced = debounce(
@@ -246,7 +246,7 @@ describe("debounce", () => {
     }, 500);
   });
 
-  it("should cancel `maxDelayed` when `delayed` is invoked", (done) => {
+  it('should cancel `maxDelayed` when `delayed` is invoked', (done) => {
     let callCount = 0;
 
     const debounced = debounce(
@@ -270,7 +270,7 @@ describe("debounce", () => {
     }, 192);
   });
 
-  it("should invoke the trailing call with the correct arguments and `this` binding", (done) => {
+  it('should invoke the trailing call with the correct arguments and `this` binding', (done) => {
     const object = {};
     let actual: any;
     let callCount = 0;
@@ -286,13 +286,13 @@ describe("debounce", () => {
     );
 
     for (;;) {
-      if (!debounced.call(object, "a")) {
+      if (!debounced.call(object, 'a')) {
         break;
       }
     }
     setTimeout(() => {
       expect(callCount).toBe(2);
-      expect(actual).toEqual([object, "a"]);
+      expect(actual).toEqual([object, 'a']);
       done();
     }, 64);
   });

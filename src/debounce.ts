@@ -1,4 +1,4 @@
-import { isObject } from "./isObject";
+import { isObject } from './isObject';
 
 export interface DebouncedFunc<T extends (...args: any[]) => any> {
   /**
@@ -110,10 +110,12 @@ export function debounce<T extends (...args: any) => any>(
 
   // Bypass `requestAnimationFrame` by explicitly setting `wait=0`.
   const useRAF =
-    wait === undefined && typeof window !== "undefined" && typeof window.requestAnimationFrame === "function";
+    wait === undefined &&
+    typeof window !== 'undefined' &&
+    typeof window.requestAnimationFrame === 'function';
 
-  if (typeof func !== "function") {
-    throw new TypeError("Expected a function");
+  if (typeof func !== 'function') {
+    throw new TypeError('Expected a function');
   }
 
   const waitValue = Number(wait) || 0;
@@ -123,8 +125,11 @@ export function debounce<T extends (...args: any) => any>(
   let maxWait: number | null = null;
   if (isObject(options)) {
     leading = !!options.leading;
-    maxWait = "maxWait" in options ? Math.max(Number(options.maxWait) || 0, waitValue) : maxWait;
-    trailing = "trailing" in options ? !!options.trailing : trailing;
+    maxWait =
+      'maxWait' in options
+        ? Math.max(Number(options.maxWait) || 0, waitValue)
+        : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
 
   function invokeFunc(time: number): Result {
@@ -138,7 +143,7 @@ export function debounce<T extends (...args: any) => any>(
   }
 
   function startTimer(pendingFunc: () => Result, wait: number): TimeoutId {
-    if (useRAF && typeof timerId === "number") {
+    if (useRAF && typeof timerId === 'number') {
       window.cancelAnimationFrame(timerId);
       return window.requestAnimationFrame(pendingFunc) as any;
     }
@@ -146,7 +151,7 @@ export function debounce<T extends (...args: any) => any>(
   }
 
   function cancelTimer(id: TimeoutId): void {
-    if (useRAF && typeof id === "number") {
+    if (useRAF && typeof id === 'number') {
       window.cancelAnimationFrame(id);
     }
     clearTimeout(id);
@@ -168,7 +173,9 @@ export function debounce<T extends (...args: any) => any>(
     const timeSinceLastInvoke = time - lastInvokeTime;
     const timeWaiting = waitValue - timeSinceLastCall;
 
-    return maxWait !== null ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+    return maxWait !== null
+      ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+      : timeWaiting;
   }
 
   function shouldInvoke(time: number): boolean {
@@ -181,7 +188,9 @@ export function debounce<T extends (...args: any) => any>(
     // trailing edge, the system time has gone backwards and we're treating
     // it as the trailing edge, or we've hit the `maxWait` limit.
     return (
-      timeSinceLastCall >= waitValue || timeSinceLastCall < 0 || (maxWait !== null && timeSinceLastInvoke >= maxWait)
+      timeSinceLastCall >= waitValue ||
+      timeSinceLastCall < 0 ||
+      (maxWait !== null && timeSinceLastInvoke >= maxWait)
     );
   }
 
