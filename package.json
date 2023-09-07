@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "main": "./lib/index.js",
   "type": "module",
+  "bin": {
+    "open-store-pages": "./bin/open-store-pages.js",
+    "open-submission-pages": "./bin/open-submission-pages.js"
+  },
   "module": "./module/index.js",
   "exports": {
     "require": "./lib/index.js",
@@ -12,8 +16,8 @@
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "printf 'build\\nmodule' | xargs -P 2 -L 1 -I{} npx tsc -p tsconfig.{}.json",
-    "watch": "printf 'build\\nmodule' | xargs -P 2 -L 1 -I{} npx tsc -w -p tsconfig.{}.json",
+    "build": "printf 'build\\nmodule' | xargs -P 2 -L 1 -I{} npx tsc -p ./tsconfig.{}.json",
+    "watch": "printf 'build\\nmodule' | xargs -P 2 -L 1 -I{} npx tsc -w -p ./tsconfig.{}.json",
     "clean": "rm -rf lib module",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "lint:prettier": "prettier --check .",
