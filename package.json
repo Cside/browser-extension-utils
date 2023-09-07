@@ -22,8 +22,8 @@
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "lint:prettier": "prettier --check .",
     "fix:prettier": "prettier --write .",
-    "lint:eslint": "eslint --max-warnings 0 --ext .js,.ts .",
-    "fix:eslint": "eslint --fix --ext .js,.ts .",
+    "lint:eslint": "eslint --max-warnings 0 --ext .js,.ts ./src",
+    "fix:eslint": "eslint --fix --ext .js,.ts ./src",
     "lint": "run-p -c lint:*",
     "fix": "run-p -c fix:*",
     "test": "vitest --run"
