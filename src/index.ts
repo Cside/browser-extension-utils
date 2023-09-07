@@ -15,7 +15,9 @@ export const getSubmissionUrlForChromeStore = (
 export const getSubmissionUrlForEdgeStore = (productId: string) =>
   `https://partner.microsoft.com/dashboard/microsoftedge/${productId}/packages/dashboard`;
 export const getSubmissionUrlForFirefoxStore = (slug: string) =>
-  ` "https://addons.mozilla.org/ja/developers/addon/${slug}/versions/submit/`;
+  `https://addons.mozilla.org/ja/developers/addon/${encodeURIComponent(
+    slug,
+  )}/versions/submit/`;
 export const getSubmissionUrlForGreasyFork = (id: string) =>
   `https://greasyfork.org/scripts/${id}/versions/new`;
 
