@@ -23,23 +23,24 @@ export const getSubmissionUrlForGreasyFork = (id: string) =>
 
 export const getReviewUrl = (
   id: string,
-  ids: {
-    chrome: {
-      id: string;
-      developerId: string;
-    };
-    edge?: {
-      crxId: string;
-      productId: string;
-    };
-    firefox?: {
-      id: string;
-      slug: string;
-    };
-    greasyFork?: {
-      id: string;
-    };
-  },
+  ids: any,
+  // ids: {
+  //   chrome: {
+  //     id: string;
+  //     developerId: string;
+  //   };
+  //   edge?: {
+  //     crxId: string;
+  //     productId: string;
+  //   };
+  //   firefox?: {
+  //     id: string;
+  //     slug: string;
+  //   };
+  //   greasyFork?: {
+  //     id: string;
+  //   };
+  // },
 ): string => {
   if (ids.firefox && id === ids.firefox.id) {
     return getFirefoxStoreUrl(ids.firefox.slug);
@@ -47,5 +48,5 @@ export const getReviewUrl = (
     return getEdgeStoreUrl(ids.edge.crxId);
   }
   // in development mode in Edge, the url will be as follows.
-  return getChromeStoreUrl(ids.chrome.id);
+  return getChromeStoreUrl(ids.chrome.id) + '/reviews';
 };

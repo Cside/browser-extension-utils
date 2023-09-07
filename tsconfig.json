@@ -3,12 +3,12 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "lib": ["dom"],
     "outDir": "lib",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "declaration": true
+    "declaration": true,
+    "types": ["vitest/globals"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "lib", "src/**/*.test.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "lib"]
 }
