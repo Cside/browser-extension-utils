@@ -12,8 +12,8 @@
   "types": "lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "printf '.\\n./tsconfig.module.json' | xargs -P 2 -L 1 -I{} npx tsc -p {}",
-    "watch": "printf '.\\n./tsconfig.module.json' | xargs -P 2 -L 1 -I{} npx tsc -w -p {}",
+    "build": "printf 'build\\nmodule' | xargs -P 2 -L 1 -I{} npx tsc -p tsconfig.{}.json",
+    "watch": "printf 'build\\nmodule' | xargs -P 2 -L 1 -I{} npx tsc -w -p tsconfig.{}.json",
     "clean": "rm -rf lib module",
     "prepublishOnly": "pnpm run clean && pnpm run build",
     "lint:prettier": "prettier --check .",
