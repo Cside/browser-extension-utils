@@ -1,12 +1,4 @@
 import { z } from 'zod';
-export const getChromeStoreUrl = (id) => 'https://chrome.google.com/webstore/detail/' + id;
-export const getEdgeStoreUrl = (crxId) => 'https://microsoftedge.microsoft.com/addons/detail/' + crxId;
-export const getFirefoxStoreUrl = (slug) => `https://addons.mozilla.org/firefox/addon/${encodeURIComponent(slug)}/`;
-export const getGreasyForkUrl = (id) => 'https://greasyfork.org/ja/scripts/' + id;
-export const getSubmissionUrlForChromeStore = (id, developerId) => `https://chrome.google.com/webstore/devconsole/${developerId}/${id}/edit/package`;
-export const getSubmissionUrlForEdgeStore = (productId) => `https://partner.microsoft.com/dashboard/microsoftedge/${productId}/packages/dashboard`;
-export const getSubmissionUrlForFirefoxStore = (slug) => `https://addons.mozilla.org/ja/developers/addon/${encodeURIComponent(slug)}/versions/submit/`;
-export const getSubmissionUrlForGreasyFork = (id) => `https://greasyfork.org/scripts/${id}/versions/new`;
 const IdsSchema = z.object({
     chrome: z.object({
         id: z.string(),
@@ -30,8 +22,16 @@ const IdsSchema = z.object({
     })
         .optional(),
 });
+const getChromeStoreUrl = (id) => 'https://chrome.google.com/webstore/detail/' + id;
+const getEdgeStoreUrl = (crxId) => 'https://microsoftedge.microsoft.com/addons/detail/' + crxId;
+const getFirefoxStoreUrl = (slug) => `https://addons.mozilla.org/firefox/addon/${encodeURIComponent(slug)}/`;
+export const getGreasyForkUrl = (id) => 'https://greasyfork.org/ja/scripts/' + id;
+export const getSubmissionUrlForChromeStore = (id, developerId) => `https://chrome.google.com/webstore/devconsole/${developerId}/${id}/edit/package`;
+export const getSubmissionUrlForEdgeStore = (productId) => `https://partner.microsoft.com/dashboard/microsoftedge/${productId}/packages`;
+export const getSubmissionUrlForFirefoxStore = (slug) => `https://addons.mozilla.org/ja/developers/addon/${encodeURIComponent(slug)}/versions/submit/`;
+export const getSubmissionUrlForGreasyFork = (id) => `https://greasyfork.org/scripts/${id}/versions/new`;
 export const validateIds = (ids) => IdsSchema.parse(ids);
-export const getReviewUrl = (id, ids) => {
+export const getReviewUrl = (id, ids, { isDev } = { isDev: false }) => {
     const parsed = IdsSchema.parse(ids);
     if (parsed.firefox && id === parsed.firefox.id) {
         return getFirefoxStoreUrl(parsed.firefox.slug);
@@ -39,6 +39,10 @@ export const getReviewUrl = (id, ids) => {
     else if (parsed.edge && id === parsed.edge.crxId) {
         return getEdgeStoreUrl(parsed.edge.crxId);
     }
-    // in development mode in Edge, the url will be as follows.
+    else if (id === parsed.chrome.id) {
+        return getChromeStoreUrl(parsed.chrome.id) + '/reviews';
+    }
+    if (!isDev)
+        throw new Error(`Unknown id: ${id}`);
     return getChromeStoreUrl(parsed.chrome.id) + '/reviews';
 };

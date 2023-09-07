@@ -1,33 +1,21 @@
 #!/usr/bin/env node
-import { cyan, red } from 'colorette';
+import { cyan } from 'colorette';
 import fs from 'fs';
 import open from 'open';
 import process from 'process';
 
-import {
-  getChromeStoreUrl,
-  getEdgeStoreUrl,
-  getFirefoxStoreUrl,
-  getGreasyForkUrl,
-  validateIds,
-} from '../module/index.js';
+import { getGreasyForkUrl, getReviewUrl } from '../module/index.js';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
-try {
-  validateIds(ids);
-} catch (error) {
-  console.log(red('Invalid ids.json: ' + error.message));
-  process.exit(1);
-}
 
-open(getChromeStoreUrl(ids.chrome.id));
+open(getReviewUrl(ids.chrome.id, ids));
 if (ids.edge) {
-  open(getEdgeStoreUrl(ids.edge.crxId));
+  open(getReviewUrl(ids.edge.crxId, ids));
 } else {
   console.log(cyan('Edge is not registered.'));
 }
 if (ids.firefox) {
-  open(getFirefoxStoreUrl(ids.firefox.slug));
+  open(getReviewUrl(ids.firefox.id, ids));
 } else {
   console.log(cyan('Firefox is not registered.'));
 }

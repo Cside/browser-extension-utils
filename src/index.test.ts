@@ -18,25 +18,34 @@ const ids = {
   },
 };
 
-test.each([
-  {
-    name: 'Chrome',
-    input: 'agomiblbpgcimbonnfmlcealkjlegbnf',
-    expected:
+describe(getReviewUrl.name + '()', () => {
+  test.each([
+    {
+      name: 'Chrome',
+      input: 'agomiblbpgcimbonnfmlcealkjlegbnf',
+      expected:
+        'https://chrome.google.com/webstore/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
+    },
+    {
+      name: 'Edge',
+      input: 'ecoemolmjoekecgonoijkhmmheehnpjh',
+      expected:
+        'https://microsoftedge.microsoft.com/addons/detail/ecoemolmjoekecgonoijkhmmheehnpjh',
+    },
+    {
+      name: 'Firefox',
+      input: 'hatena-mute@github.com',
+      expected:
+        'https://addons.mozilla.org/firefox/addon/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/',
+    },
+  ])('$name', ({ input, expected }) => {
+    expect(getReviewUrl(input, ids)).toBe(expected);
+  });
+  test('Unknown id', () => {
+    expect(() => getReviewUrl('unknown-id', ids)).toThrow();
+    expect(() => getReviewUrl('unknown-id', ids, { isDev: false })).toThrow();
+    expect(getReviewUrl('unknown-id', ids, { isDev: true })).toBe(
       'https://chrome.google.com/webstore/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
-  },
-  {
-    name: 'Edge',
-    input: 'ecoemolmjoekecgonoijkhmmheehnpjh',
-    expected:
-      'https://microsoftedge.microsoft.com/addons/detail/ecoemolmjoekecgonoijkhmmheehnpjh',
-  },
-  {
-    name: 'Firefox',
-    input: 'hatena-mute@github.com',
-    expected:
-      'https://addons.mozilla.org/firefox/addon/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/',
-  },
-])('$name', ({ input, expected }) => {
-  expect(getReviewUrl(input, ids as any)).toBe(expected);
+    );
+  });
 });

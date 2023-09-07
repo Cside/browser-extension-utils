@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { cyan, red } from 'colorette';
+import { cyan } from 'colorette';
 import fs from 'fs';
 import open from 'open';
 import process from 'process';
@@ -13,12 +13,7 @@ import {
 } from '../module/index.js';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
-try {
-  validateIds(ids);
-} catch (error) {
-  console.log(red('Invalid ids.json: ' + error.message));
-  process.exit(1);
-}
+validateIds(ids);
 
 open(getSubmissionUrlForChromeStore(ids.chrome.id, ids.chrome.developerId));
 if (ids.edge) {
