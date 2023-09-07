@@ -46,3 +46,8 @@ export const getReviewUrl = (id, ids, { isDev } = { isDev: false }) => {
         throw new Error(`Unknown id: ${id}`);
     return getChromeStoreUrl(parsed.chrome.id) + '/reviews';
 };
+export const addReviewUrls = (...args) => {
+    const url = getReviewUrl(...args);
+    for (const a of document.querySelectorAll('a.review-link'))
+        a.href = url;
+};
