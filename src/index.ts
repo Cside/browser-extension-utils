@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export const getChromeStoreUrl = (id: string) =>
   'https://chrome.google.com/webstore/detail/' + id;
 export const getEdgeStoreUrl = (crxId: string) =>
@@ -20,8 +22,6 @@ export const getSubmissionUrlForFirefoxStore = (slug: string) =>
   )}/versions/submit/`;
 export const getSubmissionUrlForGreasyFork = (id: string) =>
   `https://greasyfork.org/scripts/${id}/versions/new`;
-
-import { z } from 'zod';
 
 const IdsSchema = z.object({
   chrome: z.object({
@@ -46,6 +46,8 @@ const IdsSchema = z.object({
     })
     .optional(),
 });
+
+export const validateIds = (ids: unknown) => IdsSchema.parse(ids);
 
 export const getReviewUrl = (id: string, ids: unknown): string => {
   const parsed = IdsSchema.parse(ids);

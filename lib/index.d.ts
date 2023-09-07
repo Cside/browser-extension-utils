@@ -6,7 +6,7 @@ export declare const getSubmissionUrlForChromeStore: (id: string, developerId: s
 export declare const getSubmissionUrlForEdgeStore: (productId: string) => string;
 export declare const getSubmissionUrlForFirefoxStore: (slug: string) => string;
 export declare const getSubmissionUrlForGreasyFork: (id: string) => string;
-export declare const getReviewUrl: (id: string, ids: {
+export declare const validateIds: (ids: unknown) => {
     chrome: {
         id: string;
         developerId: string;
@@ -14,12 +14,13 @@ export declare const getReviewUrl: (id: string, ids: {
     edge?: {
         crxId: string;
         productId: string;
-    };
+    } | undefined;
     firefox?: {
         id: string;
         slug: string;
-    };
+    } | undefined;
     greasyFork?: {
-        id: string;
-    };
-}) => string;
+        id: number;
+    } | undefined;
+};
+export declare const getReviewUrl: (id: string, ids: unknown) => string;
