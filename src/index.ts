@@ -21,32 +21,40 @@ export const getSubmissionUrlForFirefoxStore = (slug: string) =>
 export const getSubmissionUrlForGreasyFork = (id: string) =>
   `https://greasyfork.org/scripts/${id}/versions/new`;
 
-export const getReviewUrl = (
-  id: string,
-  ids: any,
-  // ids: {
-  //   chrome: {
-  //     id: string;
-  //     developerId: string;
-  //   };
-  //   edge?: {
-  //     crxId: string;
-  //     productId: string;
-  //   };
-  //   firefox?: {
-  //     id: string;
-  //     slug: string;
-  //   };
-  //   greasyFork?: {
-  //     id: string;
-  //   };
-  // },
-): string => {
-  if (ids.firefox && id === ids.firefox.id) {
-    return getFirefoxStoreUrl(ids.firefox.slug);
-  } else if (ids.edge && id === ids.edge.crxId) {
-    return getEdgeStoreUrl(ids.edge.crxId);
+import { z } from 'zod';
+
+const IdsSchema = z.object({
+  chrome: z.object({
+    id: z.string(),
+    developerId: z.string(),
+  }),
+  edge: z
+    .object({
+      crxId: z.string(),
+      productId: z.string(),
+    })
+    .optional(),
+  firefox: z
+    .object({
+      id: z.string(),
+      slug: z.string(),
+    })
+    .optional(),
+  greasyFork: z
+    .object({
+      id: z.number(),
+    })
+    .optional(),
+});
+
+export const getReviewUrl = (id: string, ids: unknown): string => {
+  const parsed = IdsSchema.parse(ids);
+
+  if (parsed.firefox && id === parsed.firefox.id) {
+    return getFirefoxStoreUrl(parsed.firefox.slug);
+  } else if (parsed.edge && id === parsed.edge.crxId) {
+    return getEdgeStoreUrl(parsed.edge.crxId);
   }
   // in development mode in Edge, the url will be as follows.
-  return getChromeStoreUrl(ids.chrome.id) + '/reviews';
+  return getChromeStoreUrl(parsed.chrome.id) + '/reviews';
 };
