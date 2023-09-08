@@ -4,7 +4,7 @@ import fs from 'fs';
 import open from 'open';
 import process from 'process';
 
-import { getGreasyForkUrl, getReviewUrl } from '../module/index.js';
+import { URL_OF, format, getReviewUrl } from '../module/index.js';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
 
@@ -20,7 +20,7 @@ if (ids.firefox) {
   console.log(cyan('Firefox is not registered.'));
 }
 if (ids.greasyFork) {
-  open(getGreasyForkUrl(ids.greasyFork.id));
+  open(format(URL_OF.GREASY_FORK.STORE, { id: ids.greasyFork.id }));
 } else {
   console.log(cyan('Greasy Fork is not registered.'));
 }

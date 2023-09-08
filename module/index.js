@@ -22,29 +22,45 @@ const IdsSchema = z.object({
     })
         .optional(),
 });
-const getChromeStoreUrl = (id) => 'https://chrome.google.com/webstore/detail/' + id;
-const getEdgeStoreUrl = (crxId) => 'https://microsoftedge.microsoft.com/addons/detail/' + crxId;
-const getFirefoxStoreUrl = (slug) => `https://addons.mozilla.org/firefox/addon/${encodeURIComponent(slug)}/`;
-export const getGreasyForkUrl = (id) => 'https://greasyfork.org/ja/scripts/' + id;
-export const getSubmissionUrlForChromeStore = (id, developerId) => `https://chrome.google.com/webstore/devconsole/${developerId}/${id}/edit/package`;
-export const getSubmissionUrlForEdgeStore = (productId) => `https://partner.microsoft.com/dashboard/microsoftedge/${productId}/packages`;
-export const getSubmissionUrlForFirefoxStore = (slug) => `https://addons.mozilla.org/ja/developers/addon/${encodeURIComponent(slug)}/versions/submit/`;
-export const getSubmissionUrlForGreasyFork = (id) => `https://greasyfork.org/scripts/${id}/versions/new`;
+export const URL_OF = {
+    CHROME: {
+        STORE: 'https://chrome.google.com/webstore/detail/{id}',
+        SUBMISSION: 'https://chrome.google.com/webstore/devconsole/{developerId}/{id}/edit/package',
+    },
+    EDGE: {
+        STORE: 'https://microsoftedge.microsoft.com/addons/detail/{crxId}',
+        SUBMISSION: 'https://partner.microsoft.com/dashboard/microsoftedge/{productId}/packages',
+    },
+    FIREFOX: {
+        STORE: 'https://addons.mozilla.org/firefox/addon/{slug}/',
+        SUBMISSION: 'https://addons.mozilla.org/ja/developers/addon/{slug}/versions/submit/',
+    },
+    GREASY_FORK: {
+        STORE: 'https://greasyfork.org/ja/scripts/{id}',
+        SUBMISSION: 'https://greasyfork.org/scripts/{id}/versions/new',
+    },
+};
+export const format = (str, args) => {
+    for (const [key, value] of Object.entries(args)) {
+        str = str.replaceAll(`{${key}}`, typeof value === 'string' ? value : String(value));
+    }
+    return str;
+};
 export const validateIds = (ids) => IdsSchema.parse(ids);
 export const getReviewUrl = (id, ids, { isDev } = { isDev: false }) => {
     const parsed = IdsSchema.parse(ids);
     if (parsed.firefox && id === parsed.firefox.id) {
-        return getFirefoxStoreUrl(parsed.firefox.slug);
+        return format(URL_OF.FIREFOX.STORE, { slug: parsed.firefox.slug });
     }
     else if (parsed.edge && id === parsed.edge.crxId) {
-        return getEdgeStoreUrl(parsed.edge.crxId);
+        return format(URL_OF.EDGE.STORE, { crxId: parsed.edge.crxId });
     }
     else if (id === parsed.chrome.id) {
-        return getChromeStoreUrl(parsed.chrome.id) + '/reviews';
+        return format(URL_OF.CHROME.STORE, { id: parsed.chrome.id }) + '/reviews';
     }
     if (!isDev)
         throw new Error(`Unknown id: ${id}`);
-    return getChromeStoreUrl(parsed.chrome.id) + '/reviews';
+    return format(URL_OF.CHROME.STORE, { id: parsed.chrome.id }) + '/reviews';
 };
 export const addReviewUrls = (...args) => {
     const url = getReviewUrl(...args);

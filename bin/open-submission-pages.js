@@ -4,30 +4,24 @@ import fs from 'fs';
 import open from 'open';
 import process from 'process';
 
-import {
-  getSubmissionUrlForChromeStore,
-  getSubmissionUrlForEdgeStore,
-  getSubmissionUrlForFirefoxStore,
-  getSubmissionUrlForGreasyFork,
-  validateIds,
-} from '../module/index.js';
+import { URL_OF, format, validateIds } from '../module/index.js';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
 validateIds(ids);
 
-open(getSubmissionUrlForChromeStore(ids.chrome.id, ids.chrome.developerId));
+open(format(URL_OF.CHROME.SUBMISSION, { id: ids.chrome.id, developerId: ids.chrome.developerId }));
 if (ids.edge) {
-  open(getSubmissionUrlForEdgeStore(ids.edge.productId));
+  open(format(URL_OF.EDGE.SUBMISSION, { productId: ids.edge.productId }));
 } else {
   console.log(cyan('Edge is not registered.'));
 }
 if (ids.firefox) {
-  open(getSubmissionUrlForFirefoxStore(ids.firefox.slug));
+  open(format(URL_OF.FIREFOX.SUBMISSION, { slug: ids.firefox.slug }));
 } else {
   console.log(cyan('Firefox is not registered.'));
 }
 if (ids.greasyFork) {
-  open(getSubmissionUrlForGreasyFork(ids.greasyFork.id));
+  open(format(URL_OF.GREASY_FORK.SUBMISSION, { id: ids.greasyFork.id }));
 } else {
   console.log(cyan('Greasy Fork is not registered.'));
 }
