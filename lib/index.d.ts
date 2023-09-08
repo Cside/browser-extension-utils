@@ -9,10 +9,10 @@ export declare const URL_OF: {
     };
     readonly FIREFOX: {
         readonly STORE: "https://addons.mozilla.org/firefox/addon/{slug}/";
-        readonly SUBMISSION: "https://addons.mozilla.org/ja/developers/addon/{slug}/versions/submit/";
+        readonly SUBMISSION: "https://addons.mozilla.org/developers/addon/{slug}/versions/submit/";
     };
     readonly GREASY_FORK: {
-        readonly STORE: "https://greasyfork.org/ja/scripts/{id}";
+        readonly STORE: "https://greasyfork.org/scripts/{id}";
         readonly SUBMISSION: "https://greasyfork.org/scripts/{id}/versions/new";
     };
 };

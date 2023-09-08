@@ -33,10 +33,10 @@ export const URL_OF = {
     },
     FIREFOX: {
         STORE: 'https://addons.mozilla.org/firefox/addon/{slug}/',
-        SUBMISSION: 'https://addons.mozilla.org/ja/developers/addon/{slug}/versions/submit/',
+        SUBMISSION: 'https://addons.mozilla.org/developers/addon/{slug}/versions/submit/',
     },
     GREASY_FORK: {
-        STORE: 'https://greasyfork.org/ja/scripts/{id}',
+        STORE: 'https://greasyfork.org/scripts/{id}',
         SUBMISSION: 'https://greasyfork.org/scripts/{id}/versions/new',
     },
 };
