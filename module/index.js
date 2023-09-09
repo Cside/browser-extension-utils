@@ -47,19 +47,16 @@ export const format = (str, args) => {
     return str;
 };
 export const validateIds = (ids) => IdsSchema.parse(ids);
-export const getReviewUrl = (id, ids, { isDev } = { isDev: false }) => {
+export const getReviewUrl = (id, ids) => {
     const parsed = IdsSchema.parse(ids);
     if (parsed.firefox && id === parsed.firefox.id) {
-        return format(URL_OF.FIREFOX.STORE, { slug: parsed.firefox.slug });
+        return format(URL_OF.FIREFOX.STORE, { slug: encodeURIComponent(parsed.firefox.slug) });
     }
     else if (parsed.edge && id === parsed.edge.crxId) {
+        // prod mode only
         return format(URL_OF.EDGE.STORE, { crxId: parsed.edge.crxId });
     }
-    else if (id === parsed.chrome.id) {
-        return format(URL_OF.CHROME.STORE, { id: parsed.chrome.id }) + '/reviews';
-    }
-    if (!isDev)
-        throw new Error(`Unknown id: ${id}`);
+    // in development mode in Edge and Chrome, url becomes as follows
     return format(URL_OF.CHROME.STORE, { id: parsed.chrome.id }) + '/reviews';
 };
 export const addReviewUrls = (...args) => {

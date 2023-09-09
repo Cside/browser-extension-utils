@@ -36,9 +36,5 @@ export declare const validateIds: (ids: unknown) => {
         id: number;
     } | undefined;
 };
-export declare const getReviewUrl: (id: string, ids: unknown, { isDev }?: {
-    isDev: boolean;
-}) => string;
-export declare const addReviewUrls: (args_0: string, args_1: unknown, args_2?: {
-    isDev: boolean;
-} | undefined) => void;
+export declare const getReviewUrl: (id: string, ids: unknown) => string;
+export declare const addReviewUrls: (id: string, ids: unknown) => void;
