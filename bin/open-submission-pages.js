@@ -16,7 +16,7 @@ if (ids.edge) {
   console.log(cyan('Edge is not registered.'));
 }
 if (ids.firefox) {
-  open(format(URL_OF.FIREFOX.SUBMISSION, { slug: ids.firefox.slug }));
+  open(format(URL_OF.FIREFOX.SUBMISSION, { slug: encodeURIComponent(ids.firefox.slug) }));
 } else {
   console.log(cyan('Firefox is not registered.'));
 }

@@ -38,14 +38,13 @@ describe(getReviewUrl.name + '()', () => {
       expected:
         'https://addons.mozilla.org/firefox/addon/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%88/',
     },
+    {
+      name: 'unknown id',
+      input: 'unknown-id',
+      expected:
+        'https://chrome.google.com/webstore/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
+    },
   ])('$name', ({ input, expected }) => {
     expect(getReviewUrl(input, ids)).toBe(expected);
-  });
-  test('Unknown id', () => {
-    expect(() => getReviewUrl('unknown-id', ids)).toThrow();
-    expect(() => getReviewUrl('unknown-id', ids, { isDev: false })).toThrow();
-    expect(getReviewUrl('unknown-id', ids, { isDev: true })).toBe(
-      'https://chrome.google.com/webstore/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
-    );
   });
 });
