@@ -29,7 +29,8 @@
     "lint": "run-p -c lint:*",
     "fix": "run-p -c fix:*",
     "test": "vitest --run",
-    "check:type": "printf 'build\\nbin' | xargs -P 2 -L 1 -I{} npx tsc --noEmit -p ./tsconfig.{}.json"
+    "check:type": "printf 'build\\nbin' | xargs -P 2 -L 1 -I{} npx tsc --noEmit -p ./tsconfig.{}.json",
+    "check-all": "run-p -c lint test check:*"
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.2",
