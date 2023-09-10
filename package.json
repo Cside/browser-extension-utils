@@ -5,7 +5,8 @@
   "type": "module",
   "bin": {
     "open-store-pages": "./bin/open-store-pages.js",
-    "open-submission-pages": "./bin/open-submission-pages.js"
+    "open-submission-pages": "./bin/open-submission-pages.js",
+    "switch-locale": "./bin/switch-locale.sh"
   },
   "module": "./module/index.js",
   "exports": {
