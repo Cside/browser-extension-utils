@@ -2,13 +2,13 @@
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
-    "outDir": "lib",
+    "module": "esnext",
+    "outDir": "module",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true,
     "types": ["vitest/globals"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "binSrc/**/*.ts"],
   "exclude": ["node_modules", "lib", "module"]
 }
