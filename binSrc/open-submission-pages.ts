@@ -4,23 +4,26 @@ import fs from 'fs';
 import open from 'open';
 import process from 'process';
 
-import { URL_OF, format, getReviewUrl } from '../module/index.js';
+import { URL_OF, format, validateIds } from '../module/index.js';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
+validateIds(ids);
 
-open(getReviewUrl(ids.chrome.id, ids));
+await open(
+  format(URL_OF.CHROME.SUBMISSION, { id: ids.chrome.id, developerId: ids.chrome.developerId }),
+);
 if (ids.edge) {
-  open(getReviewUrl(ids.edge.crxId, ids));
+  await open(format(URL_OF.EDGE.SUBMISSION, { productId: ids.edge.productId }));
 } else {
   console.log(cyan('Edge is not registered.'));
 }
 if (ids.firefox) {
-  open(getReviewUrl(ids.firefox.id, ids));
+  await open(format(URL_OF.FIREFOX.SUBMISSION, { slug: encodeURIComponent(ids.firefox.slug) }));
 } else {
   console.log(cyan('Firefox is not registered.'));
 }
 if (ids.greasyFork) {
-  open(format(URL_OF.GREASY_FORK.STORE, { id: ids.greasyFork.id }));
+  await open(format(URL_OF.GREASY_FORK.SUBMISSION, { id: ids.greasyFork.id }));
 } else {
   console.log(cyan('Greasy Fork is not registered.'));
 }
