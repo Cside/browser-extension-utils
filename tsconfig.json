@@ -6,8 +6,7 @@
     "outDir": "module",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "declaration": true,
-    "types": ["vitest/globals"]
+    "declaration": true
   },
   "include": ["src/**/*.ts", "binSrc/**/*.ts"],
   "exclude": ["node_modules", "lib", "module"]

@@ -15,6 +15,12 @@
     "default": "./lib/index.js"
   },
   "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "module",
+    "bin"
+  ],
+  "sideEffects": false,
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./lib ./module && printf 'build\\ncommonjs' | xargs -P 2 -L 1 -I{} npx tsc -p ./tsconfig.{}.json",
@@ -29,10 +35,12 @@
     "lint": "run-p -c lint:*",
     "fix": "run-p -c fix:*",
     "test": "vitest --run",
-    "check:type": "printf 'build\\nbin' | xargs -P 2 -L 1 -I{} npx tsc --noEmit -p ./tsconfig.{}.json"
+    "check:type": "printf 'build\\nbin' | xargs -P 2 -L 1 -I{} npx tsc --noEmit -p ./tsconfig.{}.json",
+    "check-all": "run-p -c lint test check:*"
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.2",
+    "@types/chrome": "^0.0.245",
     "@types/node": "^20.6.0",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
