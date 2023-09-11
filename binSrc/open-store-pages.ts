@@ -4,7 +4,7 @@ import fs from 'fs';
 import open from 'open';
 import process from 'process';
 
-import { URL_OF, format, getReviewUrl } from '../module/index.js';
+import { URL_OF, format, getReviewUrl } from '../src';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
 
