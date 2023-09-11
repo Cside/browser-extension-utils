@@ -16,9 +16,9 @@
   },
   "types": "lib/index.d.ts",
   "files": [
-    "lib",
-    "module",
-    "bin"
+    "./lib/",
+    "./module/",
+    "./bin/"
   ],
   "sideEffects": false,
   "license": "MIT",
