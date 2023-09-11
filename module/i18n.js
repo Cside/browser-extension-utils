@@ -1,4 +1,4 @@
-export const internationalize = () => {
+export const localizeText = () => {
     for (const element of document.querySelectorAll('.locale'))
         for (const node of element.childNodes)
             if (node.nodeType === Node.TEXT_NODE &&
