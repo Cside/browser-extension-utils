@@ -25,7 +25,7 @@
   "scripts": {
     "build": "rm -rf ./lib ./module && printf 'build\\ncommonjs' | xargs -P 2 -L 1 -I{} npx tsc -p ./tsconfig.{}.json",
     "watch": "printf 'build\\ncommonjs' | xargs -P 2 -L 1 -I{} npx tsc -w -p ./tsconfig.{}.json",
-    "build:bin": "rm -f ./bin/*/js && tsc -p ./tsconfig.bin.json && pnpm run make-bin-executable",
+    "build:bin": "rm -f ./bin/*.js && tsc -p ./tsconfig.bin.json && pnpm run make-bin-executable",
     "watch:bin": "tsc-watch -p ./tsconfig.bin.json --onSuccess \"pnpm run make-bin-executable\"",
     "make-bin-executable": "chmod +x ./bin/*.js",
     "lint:prettier": "prettier --check .",
