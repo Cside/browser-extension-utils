@@ -1,1 +1,1 @@
-export declare const localizeText: () => void;
+export declare const localizeHtml: () => void;
