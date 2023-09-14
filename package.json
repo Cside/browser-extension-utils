@@ -1,29 +1,30 @@
 {
   "name": "browser-extension-utils",
   "version": "0.0.2",
-  "main": "./lib/index.js",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
-    "open-store-pages": "./bin/open-store-pages.js",
-    "open-submission-pages": "./bin/open-submission-pages.js",
+    "open-store-pages": "./dist/bin/openStorePages.js",
+    "open-submission-pages": "./dist/bin/openSubmissionPages.js",
     "switch-locale": "./bin/switch-locale.sh"
   },
-  "module": "./module/index.js",
   "exports": {
-    "require": "./lib/index.js",
-    "import": "./module/index.js",
-    "default": "./lib/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
   },
-  "types": "lib/index.d.ts",
   "files": [
-    "./lib/",
-    "./module/",
+    "./dist/",
     "./bin/"
   ],
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "build": "tsup && rm dist/bin/*.{d.ts,d.cts,cjs}",
+    "build": "tsup && rm dist/*.d.cts dist/bin/*.{d.ts,d.cts,cjs}",
     "watch": "tsup --watch",
     "lint:prettier": "prettier --check .",
     "fix:prettier": "prettier --write .",
