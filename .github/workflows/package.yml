@@ -1,4 +1,4 @@
-name: ci
+name: Publish Github package
 
 on:
   push:
@@ -39,19 +39,19 @@ jobs:
 
       - run: pnpm run build
 
-      # publish可能かのステータスを見る（0が正常。1がエラー）
-      - id: publishable
-        name: Check Publishable
-        run: "\
-          npx can-npm-publish --verbose \
-          && echo status=0 >> $GITHUB_OUTPUT \
-          || echo status=1 >> $GITHUB_OUTPUT"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
+      ## publish可能かのステータスを見る（0が正常。1がエラー）
+      #- id: publishable
+      #  name: Check Publishable
+      #  run: "\
+      #    npx can-npm-publish --verbose \
+      #    && echo status=0 >> $GITHUB_OUTPUT \
+      #    || echo status=1 >> $GITHUB_OUTPUT"
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
 
       # publish可能(まだpublishされていないバージョン)ならpublishする
       - name: Publish npm package
-        if: ${{ steps.publishable.outputs.status == 0 }}
+        # if: ${{ steps.publishable.outputs.status == 0 }}
         run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
