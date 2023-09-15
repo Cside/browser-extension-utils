@@ -43,3 +43,18 @@ jobs:
         run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.WRITABLE_TOKEN}}
+
+      # https://action-slack.netlify.app/usage/
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,ref,workflow,took
+          username: Github Actions
+          icon_emoji: ':github:'
+          text: ${{ job.status }}
+          author_name: ''
+          mention: channel
+          if_mention: failure
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
