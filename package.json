@@ -1,5 +1,5 @@
 {
-  "name": "browser-extension-utils",
+  "name": "@cside/browser-extension-utils",
   "version": "0.0.2",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -24,7 +24,7 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "build": "tsup && rm dist/*.d.cts dist/bin/*.{d.ts,d.cts,cjs}",
+    "build": "tsup && rm -f ./dist/*.d.cts dist/bin/*.{d.ts,d.cts,cjs}",
     "watch": "tsup --watch",
     "lint:prettier": "prettier --check .",
     "fix:prettier": "prettier --write .",
