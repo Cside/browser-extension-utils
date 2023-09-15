@@ -47,14 +47,14 @@ jobs:
           && echo status=0 >> $GITHUB_OUTPUT \
           || echo status=1 >> $GITHUB_OUTPUT"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.WRIATBLE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
 
       # publish可能(まだpublishされていないバージョン)ならpublishする
       - name: Publish npm package
         if: ${{ steps.publishable.outputs.status == 0 }}
         run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.WRIATBLE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
 
       # package.jsonのバージョンを取得する
       - id: package-version
@@ -65,7 +65,7 @@ jobs:
       - name: Add Tag
         uses: pkgdeps/git-tag-action@v2
         with:
-          github_token: ${{ secrets.WRIATBLE_TOKEN }}
+          github_token: ${{ secrets.WRITABLE_TOKEN }}
           github_repo: ${{ github.repository }}
           version: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
           git_commit_sha: ${{ github.sha }}
