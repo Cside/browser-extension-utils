@@ -2,7 +2,8 @@ name: Publish Github package
 
 on:
   push:
-    branches: [main]
+    tags:
+      - 'v*.*.*'
   workflow_dispatch:
 
 jobs:
@@ -39,38 +40,10 @@ jobs:
 
       - run: pnpm run build
 
-      ## publish可能かのステータスを見る（0が正常。1がエラー）
-      #- id: publishable
-      #  name: Check Publishable
-      #  run: "\
-      #    npx can-npm-publish --verbose \
-      #    && echo status=0 >> $GITHUB_OUTPUT \
-      #    || echo status=1 >> $GITHUB_OUTPUT"
-      #  env:
-      #    NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
-
-      # publish可能(まだpublishされていないバージョン)ならpublishする
-      - name: Publish npm package
-        # if: ${{ steps.publishable.outputs.status == 0 }}
-        run: yarn publish
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.WRITABLE_TOKEN }}
 
-      # package.jsonのバージョンを取得する
-      - id: package-version
-        name: Register Package Version
-        run: node -p -e '`PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_OUTPUT
-
-      # tagが振られてなかったら振る
-      - name: Add Tag
-        uses: pkgdeps/git-tag-action@v2
-        with:
-          github_token: ${{ secrets.WRITABLE_TOKEN }}
-          github_repo: ${{ github.repository }}
-          version: ${{ steps.package-version.outputs.PACKAGE_VERSION }}
-          git_commit_sha: ${{ github.sha }}
-
-      # https://action-slack.netlify.app/usage/
       - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
