@@ -1,4 +1,4 @@
-import { getReviewUrl } from '.';
+import { getReviewUrl } from './storeUrl';
 
 const ids = {
   chrome: {
