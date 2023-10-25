@@ -65,7 +65,25 @@ export const getReviewUrl = (id: string, ids: unknown) => {
   return format(URL_OF.CHROME.STORE, { id: parsed.chrome.id }) + '/reviews';
 };
 
+/**
+ * @deprecated since version 0.0.9
+ */
 export const addReviewUrls = (...args: Parameters<typeof getReviewUrl>) => {
   const url = getReviewUrl(...args);
   for (const a of document.querySelectorAll<HTMLAnchorElement>('a.review-link')) a.href = url;
+};
+
+export const addReviewUrl = ({
+  selector,
+  id,
+  ids,
+}: {
+  selector: string;
+  id: string;
+  ids: unknown;
+}) => {
+  const url = getReviewUrl(id, ids);
+  const link = document.querySelector<HTMLAnchorElement>(selector);
+  if (!link) throw new Error(`${selector} is not found`);
+  link.href = url;
 };
