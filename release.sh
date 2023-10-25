@@ -9,3 +9,5 @@ set +x
 git tag "$version"
 git push --tags
 gh release create "$version" --generate-notes --title "$version"
+
+open "https://github.com/Cside/browser-extension-utils/releases/tag/$version"
