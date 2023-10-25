@@ -6,6 +6,7 @@ vi ./package.json
 version="v$(node -p -e 'require("./package.json").version')"
 
 set +x
+git push
 git tag "$version"
 git push --tags
 gh release create "$version" --generate-notes --title "$version"
