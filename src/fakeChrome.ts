@@ -11,5 +11,6 @@ export const fakeChrome = {
   },
   i18n: {
     getMessage: (name: string) => name,
+    getUILanguage: () => 'en-US',
   },
 };
