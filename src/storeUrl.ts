@@ -26,7 +26,7 @@ const IdsSchema = z.object({
 
 export const URL_OF = {
   CHROME: {
-    STORE: 'https://chrome.google.com/webstore/detail/{id}',
+    STORE: 'https://chromewebstore.google.com/detail/{id}',
     SUBMISSION: 'https://chrome.google.com/webstore/devconsole/{developerId}/{id}/edit/package',
   },
   EDGE: {

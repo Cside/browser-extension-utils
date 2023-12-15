@@ -23,8 +23,7 @@ describe(getReviewUrl.name + '()', () => {
     {
       name: 'Chrome',
       input: 'agomiblbpgcimbonnfmlcealkjlegbnf',
-      expected:
-        'https://chrome.google.com/webstore/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
+      expected: 'https://chromewebstore.google.com/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
     },
     {
       name: 'Edge',
@@ -41,8 +40,7 @@ describe(getReviewUrl.name + '()', () => {
     {
       name: 'unknown id',
       input: 'unknown-id',
-      expected:
-        'https://chrome.google.com/webstore/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
+      expected: 'https://chromewebstore.google.com/detail/agomiblbpgcimbonnfmlcealkjlegbnf/reviews',
     },
   ])('$name', ({ input, expected }) => {
     expect(getReviewUrl(input, ids)).toBe(expected);
