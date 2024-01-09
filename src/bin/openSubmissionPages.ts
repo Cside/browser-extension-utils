@@ -4,12 +4,14 @@ import fs from 'fs';
 import open from 'open';
 import process from 'process';
 
-import { URL_OF, format, validateIds } from '../';
+import { URL_OF, format, isValidIds } from '../';
 
 const ids = JSON.parse(fs.readFileSync(process.cwd() + '/ids.json').toString());
-validateIds(ids);
 
 (async () => {
+  const ctx = { error: undefined };
+  if (!isValidIds(ids, ctx)) throw ctx.error;
+
   await open(
     format(URL_OF.CHROME.SUBMISSION, { id: ids.chrome.id, developerId: ids.chrome.developerId }),
   );

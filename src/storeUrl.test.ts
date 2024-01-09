@@ -45,4 +45,7 @@ describe(getReviewUrl.name + '()', () => {
   ])('$name', ({ input, expected }) => {
     expect(getReviewUrl(input, ids)).toBe(expected);
   });
+  test('Invalid ids', () => {
+    expect(() => getReviewUrl('agomiblbpgcimbonnfmlcealkjlegbnf', {})).toThrow();
+  });
 });
