@@ -1,28 +1,49 @@
-import { z } from 'zod';
+import { $number, $object, $opt, $string, access, Infer } from 'lizod';
 
-const IdsSchema = z.object({
-  chrome: z.object({
-    id: z.string(),
-    developerId: z.string(),
+const _isValidIds = $object({
+  chrome: $object({
+    id: $string,
+    developerId: $string,
   }),
-  edge: z
-    .object({
-      crxId: z.string(),
-      productId: z.string(),
-    })
-    .optional(),
-  firefox: z
-    .object({
-      id: z.string(),
-      slug: z.string(),
-    })
-    .optional(),
-  greasyFork: z
-    .object({
-      id: z.number(),
-    })
-    .optional(),
+  edge: $opt(
+    $object({
+      crxId: $string,
+      productId: $string,
+    }),
+  ),
+  firefox: $opt(
+    $object({
+      id: $string,
+      slug: $string,
+    }),
+  ),
+  greasyFork: $opt(
+    $object({
+      id: $number,
+    }),
+  ),
 });
+
+export const isValidIds = (
+  ids: unknown,
+  ctx: { error: Error | undefined },
+): ids is Infer<typeof _isValidIds> => {
+  const lizodCtx = { errors: [] };
+  const result = _isValidIds(ids, lizodCtx);
+  if (result) return true;
+
+  ctx.error = new Error(
+    `Invalid ids: ${JSON.stringify(
+      lizodCtx.errors.map((errorPath) => ({
+        path: errorPath,
+        value: access(ids, errorPath),
+      })),
+      null,
+      2,
+    )}`,
+  );
+  return false;
+};
 
 export const URL_OF = {
   CHROME: {
@@ -50,19 +71,19 @@ export const format = (str: string, args: { [key: string]: string | number }) =>
   return str;
 };
 
-export const validateIds = (ids: unknown) => IdsSchema.parse(ids);
-
 export const getReviewUrl = (id: string, ids: unknown) => {
-  const parsed = IdsSchema.parse(ids);
-
-  if (parsed.firefox && id === parsed.firefox.id) {
-    return format(URL_OF.FIREFOX.STORE, { slug: encodeURIComponent(parsed.firefox.slug) });
-  } else if (parsed.edge && id === parsed.edge.crxId) {
-    // prod mode only
-    return format(URL_OF.EDGE.STORE, { crxId: parsed.edge.crxId });
+  const ctx = { error: undefined };
+  if (isValidIds(ids, ctx)) {
+    if (ids.firefox && id === ids.firefox.id) {
+      return format(URL_OF.FIREFOX.STORE, { slug: encodeURIComponent(ids.firefox.slug) });
+    } else if (ids.edge && id === ids.edge.crxId) {
+      // prod mode only
+      return format(URL_OF.EDGE.STORE, { crxId: ids.edge.crxId });
+    }
+    // in development mode in Edge and Chrome, url becomes as follows
+    return format(URL_OF.CHROME.STORE, { id: ids.chrome.id }) + '/reviews';
   }
-  // in development mode in Edge and Chrome, url becomes as follows
-  return format(URL_OF.CHROME.STORE, { id: parsed.chrome.id }) + '/reviews';
+  throw ctx.error;
 };
 
 /**
