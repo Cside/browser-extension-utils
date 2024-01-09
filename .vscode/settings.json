@@ -1,0 +1,11 @@
+{
+  "cSpell.words": ["lizod"],
+  "files.associations": {
+    "*.svg": "html"
+  },
+  "cssVariables.lookupFiles": [
+    "src/popup/components/Container/customProperties.css",
+    "node_modules/bootstrap/dist/css/bootstrap.css"
+  ],
+  "runCurrentTest.run": "npm run test -- ${relativeTestPath} --testNamePattern \"${fullTestName}\""
+}
