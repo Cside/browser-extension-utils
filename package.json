@@ -2,8 +2,7 @@
   "name": "@cside/browser-extension-utils",
   "version": "1.0.2",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
     "open-store-pages": "./dist/bin/openStorePages.js",
@@ -13,7 +12,6 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     }
   },
@@ -24,7 +22,7 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "build": "tsup && rm -f ./dist/*.d.cts dist/bin/*.{d.ts,d.cts,cjs}",
+    "build": "tsup && rm -f dist/bin/*.d.ts",
     "watch": "tsup --watch",
     "lint:prettier": "prettier --check .",
     "fix:prettier": "prettier --write .",
