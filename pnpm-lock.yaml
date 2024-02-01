@@ -10,7 +10,7 @@ dependencies:
     version: 2.0.20
   lizod:
     specifier: ^0.2.7
-    version: 0.2.7(typescript@5.2.2)
+    version: 0.2.7(typescript@5.3.3)
   open:
     specifier: ^9.1.0
     version: 9.1.0
@@ -44,8 +44,8 @@ devDependencies:
     specifier: ^9.1.0
     version: 9.1.0(eslint@8.54.0)
   eslint-plugin-jest:
-    specifier: ^27.6.0
-    version: 27.6.0(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.54.0)(jest@29.7.0)(typescript@5.3.3)
+    specifier: ^27.6.3
+    version: 27.6.3(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.54.0)(jest@29.7.0)(typescript@5.3.3)
   eslint-plugin-prettier:
     specifier: ^5.0.1
     version: 5.0.1(eslint-config-prettier@9.1.0)(eslint@8.54.0)(prettier@3.0.3)
@@ -2223,8 +2223,8 @@ packages:
       eslint: 8.54.0
     dev: true
 
-  /eslint-plugin-jest@27.6.0(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.54.0)(jest@29.7.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-MTlusnnDMChbElsszJvrwD1dN3x6nZl//s4JD23BxB6MgR66TZlL064su24xEIS3VACfAoHV1vgyMgPw8nkdng==}
+  /eslint-plugin-jest@27.6.3(@typescript-eslint/eslint-plugin@6.16.0)(eslint@8.54.0)(jest@29.7.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-+YsJFVH6R+tOiO3gCJon5oqn4KWc+mDq2leudk8mrp8RFubLOo9CVyi3cib4L7XMpxExmkmBZQTPDYVBzgpgOA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0 || ^6.0.0
@@ -3565,12 +3565,12 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lizod@0.2.7(typescript@5.2.2):
+  /lizod@0.2.7(typescript@5.3.3):
     resolution: {integrity: sha512-pe2aQYvIil1zDCKBKLtlMrGRl+PgkKKbltfkHHWh5OW8Y3AWZ2yi9UOxmLg42RNs1XmGeMYo0EbDKajWm/4njw==}
     peerDependencies:
       typescript: '>=5'
     dependencies:
-      typescript: 5.2.2
+      typescript: 5.3.3
     dev: false
 
   /load-json-file@4.0.0:
