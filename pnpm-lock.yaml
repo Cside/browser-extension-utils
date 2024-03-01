@@ -20,8 +20,8 @@ devDependencies:
     specifier: ^2.0.2
     version: 2.0.2
   '@types/chrome':
-    specifier: ^0.0.253
-    version: 0.0.253
+    specifier: ^0.0.262
+    version: 0.0.262
   '@types/node':
     specifier: ^20.8.0
     version: 20.8.0
@@ -1105,8 +1105,8 @@ packages:
       '@babel/types': 7.22.15
     dev: true
 
-  /@types/chrome@0.0.253:
-    resolution: {integrity: sha512-ZnBlbeoje0XaBrJbFCXI8DsDfqvqdoWQO5NSGecMCHFC8W8z/rb/n7lI1FHob+TFKKLR4L2c3QJJSFLwtVc9TA==}
+  /@types/chrome@0.0.262:
+    resolution: {integrity: sha512-TOoj3dqSYE13PD2fRuMQ6X6pggEvL9rRk/yOYOyWE6sfqRWxsJm4VoVm+wr9pkr4Sht/M5t7FFL4vXato8d1gA==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.12
