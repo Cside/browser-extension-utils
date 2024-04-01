@@ -17,8 +17,8 @@ dependencies:
 
 devDependencies:
   '@tsconfig/strictest':
-    specifier: ^2.0.2
-    version: 2.0.2
+    specifier: ^2.0.5
+    version: 2.0.5
   '@types/chrome':
     specifier: ^0.0.262
     version: 0.0.262
@@ -1072,8 +1072,8 @@ packages:
       '@sinonjs/commons': 3.0.0
     dev: true
 
-  /@tsconfig/strictest@2.0.2:
-    resolution: {integrity: sha512-jt4jIsWKvUvuY6adJnQJlb/UR7DdjC8CjHI/OaSQruj2yX9/K6+KOvDt/vD6udqos/FUk5Op66CvYT7TBLYO5Q==}
+  /@tsconfig/strictest@2.0.5:
+    resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
     dev: true
 
   /@types/babel__core@7.20.1:

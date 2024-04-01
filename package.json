@@ -37,7 +37,7 @@
     "check-all": "run-p -c lint test check:*"
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.2",
+    "@tsconfig/strictest": "^2.0.5",
     "@types/chrome": "^0.0.262",
     "@types/node": "^20.8.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
