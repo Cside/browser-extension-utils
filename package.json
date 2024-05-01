@@ -40,7 +40,7 @@
     "@tsconfig/strictest": "^2.0.5",
     "@types/chrome": "^0.0.262",
     "@types/node": "^20.8.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@typescript-eslint/typescript-estree": "^7.4.0",
     "can-npm-publish": "^1.3.6",
