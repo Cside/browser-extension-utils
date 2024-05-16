@@ -10,7 +10,7 @@ dependencies:
     version: 2.0.20
   lizod:
     specifier: ^0.2.7
-    version: 0.2.7(typescript@5.2.2)
+    version: 0.2.7(typescript@5.3.3)
   open:
     specifier: ^9.1.0
     version: 9.1.0
@@ -49,6 +49,9 @@ devDependencies:
   eslint-plugin-prettier:
     specifier: ^5.0.1
     version: 5.0.1(eslint-config-prettier@9.1.0)(eslint@8.54.0)(prettier@3.0.3)
+  eslint-plugin-tree-shakable:
+    specifier: ^1.0.0
+    version: 1.0.0(eslint@8.54.0)(typescript@5.3.3)
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.8.0)
@@ -1211,6 +1214,19 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/experimental-utils@5.62.0(eslint@8.54.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-RTXpeB3eMkpoclG3ZHft6vG/Z30azNHuqY6wKPBHlVMZFuEvrtlEDe8gMqDb+SO+9hjC/pLekeSCryf9vMZlCw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.62.0(eslint@8.54.0)(typescript@5.3.3)
+      eslint: 8.54.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
   /@typescript-eslint/parser@6.13.1(eslint@8.54.0)(typescript@5.3.3):
     resolution: {integrity: sha512-fs2XOhWCzRhqMmQf0eicLa/CWSaYss2feXsy7xBD/pLyWke/jCIVc2s1ikEAtSW7ina1HNhv7kONoEfVNEcdDQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -2264,6 +2280,17 @@ packages:
       prettier: 3.0.3
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.5
+    dev: true
+
+  /eslint-plugin-tree-shakable@1.0.0(eslint@8.54.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-4hLDs6di/lX5Vr6H3EtJnNJ18oWv7A2XxoXcfNabzPIry3HLnEoGVJqJ533yugYa4vt+OQaK5icE/51WiknNnw==}
+    dependencies:
+      '@typescript-eslint/experimental-utils': 5.62.0(eslint@8.54.0)(typescript@5.3.3)
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.3.3)
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+      - typescript
     dev: true
 
   /eslint-scope@5.1.1:
@@ -3565,12 +3592,12 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lizod@0.2.7(typescript@5.2.2):
+  /lizod@0.2.7(typescript@5.3.3):
     resolution: {integrity: sha512-pe2aQYvIil1zDCKBKLtlMrGRl+PgkKKbltfkHHWh5OW8Y3AWZ2yi9UOxmLg42RNs1XmGeMYo0EbDKajWm/4njw==}
     peerDependencies:
       typescript: '>=5'
     dependencies:
-      typescript: 5.2.2
+      typescript: 5.3.3
     dev: false
 
   /load-json-file@4.0.0:

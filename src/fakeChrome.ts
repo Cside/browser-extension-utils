@@ -8,6 +8,7 @@ export const fakeChrome = {
   storage: {
     local: fakeStorage,
     sync: fakeStorage,
+    session: fakeStorage,
   },
   i18n: {
     getMessage: (name: string) => name,
