@@ -58,6 +58,6 @@
   "dependencies": {
     "colorette": "^2.0.20",
     "lizod": "^0.2.7",
-    "open": "^9.1.0"
+    "open": "^10.1.0"
   }
 }
